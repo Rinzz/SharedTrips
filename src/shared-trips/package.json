@@ -1,0 +1,19 @@
+{
+  "name": "shared-trips",
+  "version": "1.0.0",
+  "description": "application for shared traveling",
+  "main": "index.js",
+  "repository": "https://github.com/Rinzz/SharedTrips",
+  "author": "Tihomir Vasilev",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon"
+  }
+}
