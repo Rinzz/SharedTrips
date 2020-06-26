@@ -10,8 +10,6 @@ module.exports = (app) => {
     ".hbs",
     handlebars({
       extname: ".hbs",
-      layoutsDir: "views",
-      defaultLayout: "base-layout"
     })
   );
 
