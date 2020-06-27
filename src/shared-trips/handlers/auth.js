@@ -76,7 +76,7 @@ const verifyUser = async (req, res) => {
 };
 
 const verifyAuthAccess = (req, res, next) => {
-  const token = req.cookies("auth-cookie");
+  const token = req.cookies["auth-cookie"];
   if (!token) {
     return res.redirect("/");
   }
@@ -97,19 +97,20 @@ const guestAccess = (req, res, next) => {
   next();
 };
 
-const getUserStatus = (req, res, next) => {
+const getUserStatus = async (req, res, next) => {
   const token = req.cookies["auth-cookie"];
   if (!token) {
     req.isLoggedIn = false;
   }
 
   try {
-    jwt.verify(token, config.privateKey);
+    await jwt.verify(token, config.privateKey, async (err, user) => {
+      req.user = await User.findById(user.userID).lean();
+    });
     req.isLoggedIn = true;
   } catch (err) {
     req.isLoggedIn = false;
   }
-
   next();
 };
 
