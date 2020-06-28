@@ -114,10 +114,17 @@ const getUserStatus = async (req, res, next) => {
   next();
 };
 
+const verifyIsCreator = (req, res, next) => {
+  req.isCreator = req.user._id.toString() === req.trip.creator.toString()
+  console.log(req.isCreator)
+  next()
+}
+
 module.exports = {
   saveUser,
   verifyUser,
   verifyAuthAccess,
   guestAccess,
   getUserStatus,
+  verifyIsCreator
 };

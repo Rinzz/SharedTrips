@@ -6,6 +6,7 @@ const config = require("./config/config")[env];
 const express = require("express");
 //TODO require routes
 const homeRouter = require("./routes/home");
+const tripRouter = require("./routes/trips");
 const authRouter = require("./routes/auth");
 
 const app = express();
@@ -29,6 +30,7 @@ mongoose.connect(
 require("./config/express")(app);
 
 //TODO use routes
+app.use ("/", tripRouter);
 app.use ("/", authRouter);
 app.use ("/", homeRouter);
 
