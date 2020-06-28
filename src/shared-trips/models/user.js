@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const { Schema, model: Model } = mongoose;
+const { String, ObjectId } = Schema.Types;
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -10,10 +12,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  trippsHistory: {
-    type: "ObjectId",
-    ref: "Tripps",
-  },
+  tripsHistory: [
+    {
+      type: ObjectId,
+      ref: "Trips",
+    },
+  ],
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = new Model("User", UserSchema);
